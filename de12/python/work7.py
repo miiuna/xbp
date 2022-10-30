@@ -1,9 +1,10 @@
-from joblib import PrintTime
+
 
 import random
-print("----------------------------------------------------")
 print("ようこそブラックジャックへ")
-print("----------------------------------------------------")
+print("ルール説明です")
+
+
 
 deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] * 4
 
@@ -83,7 +84,7 @@ def game():
     choice = 0
 
     while choice != quit:
-        choice = input("hitしますか？　standしますか？(HIT/STAND)").lower()
+        choice = input("ヒットしますか？ スタンドしますか？ (HIT/STAND): ").lower()
         if choice == "hit":
             hit(player_hand)
             print(
@@ -109,8 +110,3 @@ def game():
 
 
 game()
-
-
-
-
-
