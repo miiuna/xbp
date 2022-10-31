@@ -1,9 +1,24 @@
 
 
-import random
-print("ようこそブラックジャックへ")
-print("ルール説明です")
+from pygments import highlight
+from unicodedata import name
 
+name=input("名前を入力してください：")
+print(name,"さんですね")
+
+print("ルール説明です。")
+print("ブラックジャックとは配られたカードの合計が「21」に近い人が勝ちというゲームです。")
+print("ゲーム開始後カードが2枚配られます。ディーラーのカードは一枚伏せられた状態です。")
+print("プレイヤーの皆様は合計数が21になるまでカードを引くことができます。しかし、21を超えた時点で負けとなってしまいます。また合計数が同じ場合は引き分けとなります。")
+print("ディーラーはカードの合計数が17を越えるまで引き続けます。")
+print("ディーラーよりプレイヤーの方が合計数が高い、もしくは、ディーラーが21をオーバーしたら、プレイヤーの皆様の勝ちです。")
+print("カードの数字が、「２〜１０」までは、数字のままカウントします。")
+print("カードの数字が、「J・Q・K」の場合、すべて「10」としてカウントします。")
+print("カードの数字が、「A」の場合、今回は「1」としてカウントします。")
+print("hitはカードを引く、stayはパスとなります。")
+
+import random
+#数をランダムに配布する
 
 
 deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] * 4
@@ -41,16 +56,14 @@ def hit(hand):
     return hand
 
 
-def stand(hand):
+def total(hand):
     score = 0
     for card in hand:
         if card == "J" or card == "Q" or card == "K":
             score = score + 10
         elif card == "A":
-            if score >= 11:
+            if score >= 1:
                 score = score + 1
-            else:
-                score += 11
         else:
             score += card
     return score
@@ -62,7 +75,7 @@ def play_again():
         # game()
         return
     else:
-        print("お疲れ様でした！")
+        print("お疲れ様でした。")
         exit()
 
 
@@ -84,7 +97,7 @@ def game():
     choice = 0
 
     while choice != quit:
-        choice = input("ヒットしますか？ スタンドしますか？ (HIT/STAND): ").lower()
+        choice = input("ヒットしますか？ ステイしますか？ (HIT/STAY): ").lower()
         if choice == "hit":
             hit(player_hand)
             print(
@@ -93,7 +106,7 @@ def game():
                 print("あなたは 21 を超えてしまいました。\033[91mYOU LOSE...\033[0m")
                 choice = quit
 
-        elif choice == "stand":
+        elif choice == "stay":
             print(
                 f"\nディーラーの２枚めのカードは {dealer_hand[1]} 合計は {total(dealer_hand)} です。")
             while total(dealer_hand) < 17:
@@ -110,3 +123,5 @@ def game():
 
 
 game()
+
+
