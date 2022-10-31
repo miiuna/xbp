@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <title>miiuna code</title>
+  <code>
+    <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+    <li style="background-color:#EFF;">from unicodedata import name</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">name=input(<font style="color:brown;">"名前を入力してください："</font>)</li>
+    <li style="background-color:#EEF;">print(name,<font style="color:brown;">"さんですね"</font>)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">print(<font style="color:brown;">"ルール説明です。"</font>)</li>
+    <li style="background-color:#EFF;">print(<font style="color:brown;">"ブラックジャックとは配られたカードの合計が「21」に近い人が勝ちというゲームです。"</font>)</li>
+    <li style="background-color:#EEF;">print(<font style="color:brown;">"ゲーム開始後カードが2枚配られます。ディーラーのカードは一枚伏せられた状態です。"</font>)</li>
+    <li style="background-color:#EFF;">print(<font style="color:brown;">"プレイヤーの皆様は合計数が21になるまでカードを引くことができます。しかし、21を超えた時点で負けとなってしまいます。また合計数が同じ場合は引き分けとなります。"</font>)</li>
+    <li style="background-color:#EEF;">print(<font style="color:brown;">"ディーラーはカードの合計数が17を越えるまで引き続けます。"</font>)</li>
+    <li style="background-color:#EFF;">print(<font style="color:brown;">"ディーラーよりプレイヤーの方が合計数が高い、もしくは、ディーラーが21をオーバーしたら、プレイヤーの皆様の勝ちです。"</font>)</li>
+    <li style="background-color:#EEF;">print(<font style="color:brown;">"カードの数字が、「２〜１０」までは、数字のままカウントします。"</font>)</li>
+    <li style="background-color:#EFF;">print(<font style="color:brown;">"カードの数字が、「J・Q・K」の場合、すべて「10」としてカウントします。"</font>)</li>
+    <li style="background-color:#EEF;">print(<font style="color:brown;">"カードの数字が、「A」の場合、今回は「1」としてカウントします。"</font>)</li>
+    <li style="background-color:#EFF;">print(<font style="color:brown;">"hitはカードを引く、stayはパスとなります。"</font>)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">import random</li>
+    <li style="background-color:#EEF;">#数をランダムに配布する</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] * 4</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">def deal():</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;hand = []</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;for i in range(2):</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;random.shuffle(deck)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;card = deck.pop()</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if card == 11:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;card = <font style="color:brown;">"J"</font></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if card == 12:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;card = <font style="color:brown;">"Q"</font></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if card == 13:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;card = <font style="color:brown;">"K"</font></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if card == 1:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;card = <font style="color:brown;">"A"</font></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hand.append(card)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;return hand</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">def hit(hand):</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;random.shuffle(deck)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;card = deck.pop()</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;if card == 11:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;card = <font style="color:brown;">"J"</font></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;if card == 12:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;card = <font style="color:brown;">"Q"</font></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;if card == 13:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;card = <font style="color:brown;">"K"</font></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;if card == 1:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;card = <font style="color:brown;">"A"</font></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;hand.append(card)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;return hand</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">def total(hand):</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;score = 0</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;for card in hand:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if card == <font style="color:brown;">"J"</font> or card == <font style="color:brown;">"Q"</font> or card == <font style="color:brown;">"K"</font>:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;score = score + 10</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif card == <font style="color:brown;">"A"</font>:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if score &gt;= 1:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;score = score + 1</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;score += card</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;return score</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">def play_again():</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;again = input(<font style="color:brown;">"もう１度プレイしますか？ (Y/N): "</font>)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;if again == <font style="color:brown;">"y"</font> or again == <font style="color:brown;">"Y"</font>:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# game()</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"お疲れ様でした。"</font>)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit()</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">def result(dealer_hand, player_hand):</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;if total(player_hand) &gt; total(dealer_hand):</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f<font style="color:brown;">"\nディーラーの合計は {total(dealer_hand)} あなたの合計は {total(player_hand)} です。\033[32mYOU WIN!\033[0m"</font>)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif total(dealer_hand) &gt; total(player_hand):</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f<font style="color:brown;">"\nディーラーの合計は {total(dealer_hand)} あなたの合計は {total(player_hand)} です。\033[91mYOU LOSE...\033[0m"</font>)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">def game():</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;dealer_hand = deal()</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;player_hand = deal()</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print(f<font style="color:brown;">"ディーラーのカードは {dealer_hand[0]} です。"</font>)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print(f<font style="color:brown;">"プレイヤーのカードは {player_hand} 合計が {total(player_hand)} です。"</font>)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;choice = 0</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;while choice != quit:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choice = input(<font style="color:brown;">"ヒットしますか？ ステイしますか？ (HIT/STAY): "</font>).lower()</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if choice == <font style="color:brown;">"hit"</font>:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hit(player_hand)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f<font style="color:brown;">"\nあなたに {player_hand[-1]} が配られ、カードは {player_hand} 合計は {total(player_hand)} です。"</font>)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if total(player_hand) &gt; 21:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"あなたは 21 を超えてしまいました。\033[91mYOU LOSE...\033[0m"</font>)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choice = quit</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif choice == <font style="color:brown;">"stay"</font>:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f<font style="color:brown;">"\nディーラーの２枚めのカードは {dealer_hand[1]} 合計は {total(dealer_hand)} です。"</font>)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while total(dealer_hand) &lt; 17:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hit(dealer_hand)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f<font style="color:brown;">"ディーラーに {dealer_hand[-1]} が配られ、カードは {dealer_hand} 合計は {total(dealer_hand)} です。"</font>)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if total(dealer_hand) &gt; 21:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"ディーラーは 21 を超えてしまいました。\033[32mYOU WIN!\033[0m"</font>)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choice = quit</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if total(dealer_hand) &lt;= 21:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result(dealer_hand, player_hand)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choice = quit</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">game()</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"></li>
+    </ol></code>
+    
+
+    
+    
+

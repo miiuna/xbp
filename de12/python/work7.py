@@ -1,6 +1,4 @@
 
-
-from pygments import highlight
 from unicodedata import name
 
 name=input("名前を入力してください：")
