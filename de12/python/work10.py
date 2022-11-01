@@ -16,8 +16,8 @@ def create_layout(cal_date):
     inner = []
     
     for week in weekday:
-        inner.append(sg.Text(week, size=(16,3), text_color='white', background_color='green', justification='center'))
-    layout.append(inner.copy())
+        inner.append(sg.Text(week, size=(16,3), text_color='white', background_color='black', justification='center'))
+    layout.append(inner.copy())#(○,○)で画像の大きさ変更   #colorで好きな色に変更できる
 
     def date_judgement(i, day):
         if day == today:
