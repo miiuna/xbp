@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <!-- ⑥↓タイトルを変えてみよう -->
+    <title>miiuna ソースコード</title>
+    <!-- ⑤スタイルシートの設定をしよう -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- h1.htmlからある行をコピペしてくればOK -->
+</head>
+<code>
+    <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+    <li style="background-color:#EFF;">import calendar</li>
+    <li style="background-color:#EEF;">#カレンダーの作成に利用する</li>
+    <li style="background-color:#EFF;">import datetime</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">import PySimpleGUI as sg</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">sg.theme(<font style="color:brown;">'LightBlue6'</font>)</li>
+    <li style="background-color:#EFF;">today = datetime.date.today()</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">def create_layout(cal_date):</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;weekday = [<font style="color:brown;">'SUN'</font>,<font style="color:brown;">'MON'</font>, <font style="color:brown;">'TUE'</font>, <font style="color:brown;">'WED'</font>, <font style="color:brown;">'THU'</font>, <font style="color:brown;">'FRI'</font>, <font style="color:brown;">'SAT'</font>] </li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;#曜日の名前を表示できる </li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;cal = calendar.Calendar(firstweekday=6)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;days = cal.monthdatescalendar(cal_date.year, cal_date.month)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;layout = [[sg.Text(cal_date.year, font=(None, 13, <font style="color:brown;">'bold'</font>))],</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[sg.Push(), sg.Button(<font style="color:brown;">'&lt;&lt;'</font>), sg.Button(<font style="color:brown;">'&lt;'</font>), sg.Text(cal_date.month, font=(None, 30)), sg.Button(<font style="color:brown;">'&gt;'</font>), sg.Button(<font style="color:brown;">'&gt;&gt;'</font>), sg.Push()]]</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;inner = []</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;for week in weekday:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inner.append(sg.Text(week, size=(16,3), text_color=<font style="color:brown;">'white'</font>, background_color=<font style="color:brown;">'black'</font>, justification=<font style="color:brown;">'center'</font>))</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;layout.append(inner.copy())#(○,○)で画像の大きさ変更   #colorで好きな色に変更できる</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;def date_judgement(i, day):</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if day == today:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return sg.Text(day.day, size=(16,3), justification=<font style="color:brown;">'right'</font>, text_color=<font style="color:brown;">'white'</font>, background_color=<font style="color:brown;">'gray'</font>)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif i == 0 and day.month == cal_date.month:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return sg.Text(day.day, size=(16,3), justification=<font style="color:brown;">'right'</font>, text_color=<font style="color:brown;">'red'</font>)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif i == 6 and day.month == cal_date.month:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return sg.Text(day.day, size=(16,3), justification=<font style="color:brown;">'right'</font>, text_color=<font style="color:brown;">'blue'</font>)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif day.month == cal_date.month:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return sg.Text(day.day, size=(16,3), justification=<font style="color:brown;">'right'</font>)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif i == 0:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return sg.Text(day.day, size=(16,3), justification=<font style="color:brown;">'right'</font>, text_color=<font style="color:brown;">'#ff9999'</font>)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif i == 6:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return sg.Text(day.day, size=(16,3), justification=<font style="color:brown;">'right'</font>, text_color=<font style="color:brown;">'#9999ff'</font>)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return sg.Text(day.day, size=(16,3), justification=<font style="color:brown;">'right'</font>, text_color=<font style="color:brown;">'#cccccc'</font>)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;for row in days:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inner = []</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for i, day in enumerate(row):</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sg_text = date_judgement(i, day)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inner.append(sg_text)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;layout.append(inner.copy())</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;return layout</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">def main():</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;cal_date = today</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;layout = create_layout(cal_date)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;window = sg.Window(<font style="color:brown;">'Simple Calendar'</font>, layout)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;while True:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event, _ = window.read()</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if event == sg.WIN_CLOSED:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif event == <font style="color:brown;">'&lt;'</font>:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cal_date = datetime.date(cal_date.year, cal_date.month, 1) - datetime.timedelta(days=1)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif event == <font style="color:brown;">'&gt;'</font>:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cal_date = datetime.date(cal_date.year, cal_date.month, 28) + datetime.timedelta(days=4)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif event == <font style="color:brown;">'&lt;&lt;'</font>:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cal_date = datetime.date(cal_date.year - 1, cal_date.month, 1)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif event == <font style="color:brown;">'&gt;&gt;'</font>:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cal_date = datetime.date(cal_date.year + 1, cal_date.month, 1)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.close()</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window = sg.Window(<font style="color:brown;">'Simple Calendar'</font>, create_layout(cal_date))</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;window.close()</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">if __name__ == <font style="color:brown;">'__main__'</font>:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;main()</li>
+    </ol></code>

@@ -1,4 +1,5 @@
 import calendar
+#カレンダーの作成に利用する
 import datetime
 
 import PySimpleGUI as sg
@@ -8,7 +9,8 @@ sg.theme('LightBlue6')
 today = datetime.date.today()
 
 def create_layout(cal_date):
-    weekday = ['SUN','MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']  
+    weekday = ['SUN','MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'] 
+    #曜日の名前を表示できる 
     cal = calendar.Calendar(firstweekday=6)
     days = cal.monthdatescalendar(cal_date.year, cal_date.month)
     layout = [[sg.Text(cal_date.year, font=(None, 13, 'bold'))],
